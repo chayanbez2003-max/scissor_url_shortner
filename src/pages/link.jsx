@@ -14,6 +14,9 @@ import { BarLoader } from 'react-spinners'
 
 const Link = () => {
 
+  const BASE_URL = import.meta.env.VITE_BASE_URL;
+
+
   const downloadImage =() =>{
     const imageUrl = url?.qr
     const fileName = url?.title
