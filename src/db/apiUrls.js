@@ -21,11 +21,11 @@ export async function getUrl({id, user_id}) {
     .select("*")
     .eq("id", id)
     .eq("user_id", user_id)
-    .single();
+    .maybeSingle();
 
-  if (error) {
-    console.error(error);
-    throw new Error("Short Url not found");
+  if (error) throw error;
+  if (!data) {
+    throw new Error('No matching URL found');
   }
 
   return data;

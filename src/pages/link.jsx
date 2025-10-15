@@ -8,13 +8,13 @@ import { getClicksForUrl } from '@/db/apiClicks'
 import { deleteUrl, getUrl } from '@/db/apiUrls'
 import useFetch from '@/hooks/use.fetch'
 import { Copy, Download, LinkIcon, Trash } from 'lucide-react'
-import React, { useEffect } from 'react'
+import  { useEffect } from "react"
 import { useNavigate, useParams } from 'react-router-dom'
 import { BarLoader } from 'react-spinners'
 
 const Link = () => {
 
-  const BASE_URL = import.meta.env.VITE_BASE_URL;
+  // const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 
   const downloadImage =() =>{
@@ -55,6 +55,10 @@ const Link = () => {
 
   },[])
 
+   useEffect(() => {
+    if (!error && loading === false) fnStats();
+  }, [loading, error]);
+
   if(error){
     navigate("/dashboard")
   }
@@ -75,8 +79,8 @@ const Link = () => {
           {url?.title}</span>
 
         <a
-        //  href={`https://scissor/url_shortner.com/${link}`} 
-         href={`${BASE_URL}/${id}`} 
+         href={`https://scissor/url_shortner.com/${link}`} 
+        //  href={`${BASE_URL}/${id}`} 
          target="_blank"
          className="text-xl sm:text-3xl md:text-3xl  text-blue-400 font-bold hover:underline cursor-pointer break-words"
         >
